@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+		<title>Рефакторим код не задумываясь</title>
 
 		<link rel="stylesheet" href="css/reveal.css">
 		<link rel="stylesheet" href="css/theme/black.css">
@@ -24,8 +24,144 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+				<section data-background-image="img/cover.png" data-background-size="contain"></section>
+				<section>
+					<h2>Объектная гимнастика</h2>
+					<ol>
+						<li>Только один уровень отступа в методе</li>
+						<li>Не используйте else</li>
+						<li>Оберните все примитивные типы</li>
+						<li>Коллекции первого класса</li>
+						<li>Одна точка на строку</li>
+						<li>Не используйте сокращения</li>
+						<li>Сохраняйте сущности короткими</li>
+						<li>Никаких классов с более чем 2 атрибутами</li>
+						<li>Никаких геттеров, сеттеров и свойств</li>
+					</ol>
+				</section>
+				<section>
+				  <h1>#1</h1>
+				  <h2>Только один уровень отступа в методе</h2>
+				  <ul>
+					<li>цикломатическая сложность</li>
+					<li>один уровень абстракции</li>
+				  </ul>
+				</section>
+				<section>
+				  <h1>#2</h1>
+				  <h2>Не используйте else</h2>
+				  <ul>
+					<li>читаемость</li>
+					<li>предсказуемость</li>
+				  </ul>
+				</section>
+				<section>
+          <h1>#4</h1>
+          <h2>Коллекции первого класса</h2>
+          <ul>
+            <li>инкапсуляция поведений, относящихся к коллекции:</li>
+            <ul>
+                <li>поиск</li>
+                <li>фильтрация</li>
+            </ul>
+          </ul>
+</section>
+        <section>
+          <h1>#3</h1>
+          <h2>Оберните все примитивные типы</h2>
+          <ul>
+            <li>предсказуемость</li>
+            <li>инкапсуляция операций</li>
+            <li>если у объекта есть поведение<small>адаптировано для PHP</small></li>
+          </ul>
+</section>
+
+
+        <section>
+          <h1>#5</h1>
+          <h2>Одна точка на строку<sup>*</sup>&nbsp;<sup>**</sup></h2>
+          <h4><sup>*</sup> Два -> на строку в PHP</h4>
+          <h4><sup>**</sup> кроме текучих интерфейсов </h4>
+          <ul>
+            <li>тестируемость (mock-объекты)</li>
+            <li>закон Деметры</li>
+          </ul>
+</section>
+
+        <section>
+          <h1>#5</h1>
+          <h2>Одна точка на строку<sup>*</sup>&nbsp;<sup>**</sup></h2>
+          <h4><sup>*</sup> Два -> на строку в PHP</h4>
+          <h4><sup>**</sup> кроме текучих интерфейсов </h4>
+          <ul>
+            <li>тестируемость (mock-объекты)</li>
+            <li>закон Деметры</li>
+          </ul>
+        </section>
+
+
+        <section>
+          <h1>#6</h1>
+          <h2>Не используйте сокращения</h2>
+          <ul>
+            <li>слишком длинное название метода?</li>
+            <li>слишком часто приходиться вызывать метод?</li>
+            <li>читаемость</li>
+          </ul>
+</section>
+
+        <section>
+          <h1>#6</h1>
+          <h2>Не используйте сокращения</h2>
+          <ul>
+            <li>слишком длинное название метода?</li>
+            <li>слишком часто приходиться вызывать метод?</li>
+            <li>читаемость</li>
+          </ul>
+        </section>
+
+        <section>
+          <h1>#7</h1>
+          <h2>Сохраняйте сущности короткими</h2>
+          <ul>
+            <li>200 сток в файле (включая docblock)</li>
+            <li>10 методов в классе</li>
+            <li>15 классов в пространстве имен</li>
+          </ul>
+        </section>
+
+        <section>
+          <h1>#8</h1>
+          <h2>Никаких классов с более чем 2 атрибутами</h2>
+          <ul>
+            <li>это не шутка, а упражнение</li>
+            <li>высокая связность</li>
+            <li>инкапсуляция</li>
+          </ul>
+        </section>
+        <section>
+            <img src="images/rule8.png">
+        </section>
+        <section>
+            <h2>Почему два?</h2>
+            <ul>
+              <li>обслуживают состояние одного атрибута</li>
+              <li>координируют две отдельные переменные</li>
+            </ul>
+        </section>
+
+        <section>
+          <h1>#9</h1>
+          <h2><s>геттеры, сеттеры и свойста</s></h2>
+          <ul>
+            <li>указывай, а не спрашивай</li>
+            <li>принцип открытости/закрытости</li>
+          </ul>
+</section>
+				<section>
+					<h1>Вопросы?</h1>
+				</section>
+
 			</div>
 		</div>
 
@@ -36,7 +172,10 @@
 			// More info https://github.com/hakimel/reveal.js#configuration
 			Reveal.initialize({
 				history: true,
-
+				
+				width: 800,
+				height: 600,
+				
 				// More info https://github.com/hakimel/reveal.js#dependencies
 				dependencies: [
 					{ src: 'plugin/markdown/marked.js' },
