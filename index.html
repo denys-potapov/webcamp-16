@@ -1,34 +1,52 @@
 <!doctype html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>Рефакторим код не задумываясь</title>
+        <title>Рефакторим код не задумываясь</title>
 
-		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css">
+        <link rel="stylesheet" href="css/reveal.css">
+        <link rel="stylesheet" href="css/theme/black.css">
 
-		<!-- Theme used for syntax highlighting of code -->
-		<link rel="stylesheet" href="lib/css/zenburn.css">
+        <!-- Theme used for syntax highlighting of code -->
+        <link rel="stylesheet" href="lib/css/zenburn.css">
+        <style>
+        .reveal code {
+            font-size: 0.6em;
+            line-height: 1em;
+        }
+        </style>
+        <!-- Printing and PDF exports -->
+        <script>
+            var link = document.createElement( 'link' );
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+            document.getElementsByTagName( 'head' )[0].appendChild( link );
+        </script>
+    </head>
+    <body>
+        <div class="reveal">
+            <div class="slides">
+                <section data-background-image="img/cover.png" data-background-size="contain"></section>
+                
+                <section>
+                    <h2>Разработка</h2>
+                    <ul>
+                        <li>наука</li>
+                        <li>ремесло</li>
+                    </ul>
+                </section>
 
-		<!-- Printing and PDF exports -->
-		<script>
-			var link = document.createElement( 'link' );
-			link.rel = 'stylesheet';
-			link.type = 'text/css';
-			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
-			document.getElementsByTagName( 'head' )[0].appendChild( link );
-		</script>
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
-				<section data-background-image="img/cover.png" data-background-size="contain"></section>
-				<section>
-				<h2>Monolog</h2>
-				<small><pre><code data-trim>
-				// Create the logger
+                <section data-background-image="img/1.gif" data-background-size="contain">
+                    <h2>Reef knot</h2>
+                </section>
+
+                <section>
+                <h2>Monolog</h2>
+                <pre><code data-trim>
+                // Create the logger
 $logger = new Logger('my_logger');
 
 // Now add some handlers
@@ -43,56 +61,58 @@ $logger->pushProcessor(function ($record) {
 
 // You can now use your logger
 $logger->addInfo('My logger is now ready');
-				</code></pre></small>
-				</section>
-				<section>
-					<h2>Объектная гимнастика</h2>
-					<blockquote>
-						англ. Object Calisthenics. Calisthenics — зарядка, гимнастика.
-					</blockquote>
-					<ul>
-						<li>читаемость</li>
-						<li>тестируемость</li>
-						<li>понятность</li>
-						<li>поддерживаемость</li>
-					</ul>
-				</section>
-				<section>
-					<h2>Объектная гимнастика</h2>
-					<ol>
-						<li>Только один уровень отступа в методе</li>
-						<li>Не используйте else</li>
-						<li>Оберните все примитивные типы</li>
-						<li>Коллекции первого класса</li>
-						<li>Одна точка на строку</li>
-						<li>Не используйте сокращения</li>
-						<li>Сохраняйте сущности короткими</li>
-						<li>Никаких классов с более чем 2 атрибутами</li>
-						<li>Никаких геттеров, сеттеров и свойств</li>
-					</ol>
-				</section>
-				<section>
-					<h2>Презентация</h2>
-					<p>http://bit.ly/webcamp16</p>
-					<h2>Код</h2>
-					<p>http://bit.ly/webcamp16code</p>
-				</section>
-				
-				<section>
-				  <h1>#4</h1>
-				  <h2>Коллекции первого класса</h2>
-				  <ul>
-					<li>инкапсуляция поведений, относящихся к коллекции:</li>
-					<ul>
-						<li>поиск</li>
-						<li>фильтрация</li>
-					</ul>
-				  </ul>
-				</section>
-				
-				<section>
-					<h2>Logger</h2>
-					<small><pre><code data-trim>
+                </code></pre>
+                </section>
+
+                <section>
+                    <h2>Объектная гимнастика</h2>
+                    <blockquote>
+                        англ. Object Calisthenics. Calisthenics — зарядка, гимнастика.
+                    </blockquote>
+                    <ul>
+                        <li>читаемость</li>
+                        <li>тестируемость</li>
+                        <li>понятность</li>
+                        <li>поддерживаемость</li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>Объектная гимнастика</h2>
+                    <ol>
+                        <li>Только один уровень отступа в методе</li>
+                        <li>Не используйте else</li>
+                        <li>Оберните все примитивные типы</li>
+                        <li>Коллекции первого класса</li>
+                        <li>Одна точка на строку</li>
+                        <li>Не используйте сокращения</li>
+                        <li>Сохраняйте сущности короткими</li>
+                        <li>Никаких классов с более чем 2 атрибутами</li>
+                        <li>Никаких геттеров, сеттеров и свойств</li>
+                    </ol>
+                </section>
+
+                <section>
+                    <h2>Презентация</h2>
+                    <p>http://bit.ly/webcamp16</p>
+                    <h2>Код</h2>
+                    <p>http://bit.ly/webcamp16code</p>
+                </section>
+                
+                <section>
+                  <h1>#4</h1>
+                  <h2>Коллекции первого класса</h2>
+                  <ul>
+                    <li>инкапсуляция поведений, относящихся к коллекции:</li>
+                    <ul>
+                        <li>поиск</li>
+                        <li>фильтрация</li>
+                    </ul>
+                  </ul>
+                </section>
+                
+                <section>
+                    <h2>Logger</h2>
+                    <pre><code data-trim>
      /**
       * The handler stack
       *
@@ -114,12 +134,12 @@ $logger->addInfo('My logger is now ready');
 
         return false;
      }
-				</code></pre></small>
-				</section>
-				
-				<section>
-					<h2>HandlerStack</h2>
-					<small><pre><code data-trim>
+                </code></pre>
+                </section>
+                
+                <section>
+                    <h2>HandlerStack</h2>
+                    <pre><code data-trim>
      /**
       * The handler stack
       *
@@ -131,12 +151,12 @@ $logger->addInfo('My logger is now ready');
      {
             return $this->handlers->isHandling($level);
      }
-				</code></pre></small>
-				</section>
-				
-				<section>
-					<h2>GroupHandler</h2>
-					<small><pre><code data-trim>
+                </code></pre>
+                </section>
+                
+                <section>
+                    <h2>GroupHandler</h2>
+                    <pre><code data-trim>
      /**
       * The handler stack
       *
@@ -154,12 +174,12 @@ $logger->addInfo('My logger is now ready');
 
         return false;
      }
-					</code></pre></small>
-				</section>
-				
-				<section>
-					<h2>HandlerStack</h2>
-					<small><pre><code data-trim>
+                    </code></pre>
+                </section>
+                
+                <section>
+                    <h2>HandlerStack</h2>
+                    <pre><code data-trim>
      /**
       * The handler stack
       *
@@ -171,182 +191,310 @@ $logger->addInfo('My logger is now ready');
      {
             return $this->handlers->isHandling($level);
      }
-				</code></pre></small>
-				</section>
-				
-				<section data-background-image="img/1.gif" data-background-size="contain">
-					<h2>Reef knot</h2>
-				</section>
+                </code></pre>
+                </section>
+                
+                <section>
+                <h2>Logger</h2>
+                <pre><code data-trim>
+     /**
+      * Processors that will process all log records
+      *
+      * To process records of a single handler instead, add the processor on that specific handler
+      * @var callable[]
+      */
+     protected $processors;
 
-				
-				<section data-background-image="img/2.gif" data-background-size="contain">
-					<h2>Figure 8 knot</h2>
-				</section>
-				
-				<section data-background-image="img/3.gif" data-background-size="contain">
-					<h2>Bowline</h2>
-				</section>				
-			
-				<section data-background-image="img/4.gif" data-background-size="contain">
-					<h2>Clove hitch</h2>
-				</section>	
-		
-				<section data-background-image="img/5.gif" data-background-size="contain">
-					<h2>Square lashing</h2>
-				</section>
-				
-				<section data-background-image="img/6.gif" data-background-size="contain">
-					<h2>Tripod lashing</h2>
-				</section>
-				
-				<section data-background-image="img/7.gif" data-background-size="contain">
-				</section>
-		
-				<section data-background-image="img/8.gif" data-background-size="contain">
-					<h2>Truckers hitch</h2>
-				</section>		
-				
-				<section data-background-image="img/9.gif" data-background-size="contain">
-					<h2>Rope swing</h2>
-				</section>	
+     public function pushProcessor(callable $callback): self
+     {
+         array_unshift($this->processors, $callback);
 
-				
-				<section>
-				<pre><code data-trim>
-				
-				</code></pre>
-				</section>
-				
-				<section>
-				  <h1>#1</h1>
-				  <h2>Только один уровень отступа в методе</h2>
-				  <ul>
-					<li>цикломатическая сложность</li>
-					<li>один уровень абстракции</li>
-				  </ul>
-				</section>
-				
-				<section>
-				  <h1>#2</h1>
-				  <h2>Не используйте else</h2>
-				  <ul>
-					<li>читаемость</li>
-					<li>предсказуемость</li>
-				  </ul>
-				</section>
-				
-				<section>
-				  <h1>#3</h1>
-				  <h2>Оберните все примитивные типы</h2>
-				  <ul>
-					<li>предсказуемость</li>
-					<li>инкапсуляция операций</li>
-					<li>если у объекта есть поведение<small>адаптировано для PHP</small></li>
-				  </ul>
-				</section>
-				
+         return $this;
+     }  
+     ...
 
-				
-				<section>
-				  <h1>#3</h1>
-				  <h2>Оберните все примитивные типы</h2>
-				  <ul>
-					<li>предсказуемость</li>
-					<li>инкапсуляция операций</li>
-					<li>если у объекта есть поведение<small>адаптировано для PHP</small></li>
-				  </ul>
-				</section>
+        foreach ($this->processors as $processor) {
+            $record = call_user_func($processor, $record);
+        }
+                </code></pre>
+                </section>
 
-				<section>
-				  <h1>#5</h1>
-				  <h2>Одна точка на строку<sup>*</sup>&nbsp;<sup>**</sup></h2>
-				  <h4><sup>*</sup> Два -> на строку в PHP</h4>
-				  <h4><sup>**</sup> кроме текучих интерфейсов </h4>
-				  <ul>
-					<li>тестируемость (mock-объекты)</li>
-					<li>закон Деметры</li>
-				  </ul>
-				</section>
+                <section>
+                <h2>ProcessorStack</h2>
+                <pre><code data-trim>
+      /**
+      * The procesors stack stack
+      *
+      * To process records of a single handler instead, add the processor on that specific handler
+      * @var ProcessorStack
+      */
+     protected $processors;
 
-				<section>
-				  <h1>#5</h1>
-				  <h2>Одна точка на строку<sup>*</sup>&nbsp;<sup>**</sup></h2>
-				  <h4><sup>*</sup> Два -> на строку в PHP</h4>
-				  <h4><sup>**</sup> кроме текучих интерфейсов </h4>
-				  <ul>
-					<li>тестируемость (mock-объекты)</li>
-					<li>закон Деметры</li>
-				  </ul>
-				</section>
+     public function pushProcessor(callable $callback): self
+     {
+         $this->processors->push($callback);
 
-				<section>
-				  <h1>#6</h1>
-				  <h2>Не используйте сокращения</h2>
-				  <ul>
-					<li>слишком длинное название метода?</li>
-					<li>слишком часто приходиться вызывать метод?</li>
-					<li>читаемость</li>
-				  </ul>
-				</section>
+         return $this;
+     }
 
-				<section>
-				  <h1>#7</h1>
-				  <h2>Сохраняйте сущности короткими</h2>
-				  <ul>
-					<li>200 сток в файле (включая docblock)</li>
-					<li>10 методов в классе</li>
-					<li>15 классов в пространстве имен</li>
-				  </ul>
-				</section>
+     ...
 
-				<section>
-				  <h1>#8</h1>
-				  <h2>Никаких классов с более чем 2 атрибутами</h2>
-				  <ul>
-					<li>это не шутка, а упражнение</li>
-					<li>высокая связность</li>
-					<li>инкапсуляция</li>
-					<li>обслуживают состояние одного атрибута</li>
-					<li>координируют две отдельные переменные</li>
-				  </ul>
-				</section>
-		
+     $record = $this->processors->process($record);
+                </code></pre>
+                </section>
+
+                <section>
+                <h2>ProcessableHandlerTrait</h2>
+                <pre><code data-trim>
+     /**
+      * Processors that will process all log records
+      *
+      * To process records of a single handler instead, add the processor on that specific handler
+      * @var callable[]
+      */
+     protected $processors;
+
+     public function pushProcessor(callable $callback): self
+     {
+         array_unshift($this->processors, $callback);
+
+         return $this;
+     }  
+
+     protected function processRecord(array $record)
+     {
+       foreach ($this->processors as $processor) {
+            $record = $processor($record);
+        }
  
-				<section>
-				  <h1>#9</h1>
-				  <h2><s>геттеры, сеттеры и свойста</s></h2>
-				  <ul>
-					<li>указывай, а не спрашивай</li>
-					<li>принцип открытости/закрытости</li>
-				  </ul>
-				</section>
-				
-				<section>
-					<h1>Вопросы?</h1>
-				</section>
+        return $record;
+     }
+                </code></pre>
+                </section>
 
-			</div>
-		</div>
+                <section>
+                <h2>DRY</h2>
+                <p>-30 LOC</p>
+                <p>-4 теста</p>
+                </section>
 
-		<script src="lib/js/head.min.js"></script>
-		<script src="js/reveal.js"></script>
+                <section>
+                  <h1>#3</h1>
+                  <h2>Оберните все примитивные типы</h2>
+                  <ul>
+                    <li>предсказуемость</li>
+                    <li>инкапсуляция операций</li>
+                    <li>если у объекта есть поведение<small>адаптировано для PHP</small></li>
+                  </ul>
+                </section>
 
-		<script>
-			// More info https://github.com/hakimel/reveal.js#configuration
-			Reveal.initialize({
-				history: true,
-				
-				width: 800,
-				height: 600,
-				
-				// More info https://github.com/hakimel/reveal.js#dependencies
-				dependencies: [
-					{ src: 'plugin/markdown/marked.js' },
-					{ src: 'plugin/markdown/markdown.js' },
-					{ src: 'plugin/notes/notes.js', async: true },
-					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
-				]
-			});
-		</script>
-	</body>
+                <section>
+                <h2>Log level</h2>
+                <pre><code data-trim>
+                public function addRecord(int $level, string $message, array $context = array()): bool
+                .....
+                public static function toMonologLevel($level): int
+                {
+                    if (is_string($level)) {
+                        if (defined(__CLASS__.'::'.strtoupper($level))) {
+                            return constant(__CLASS__.'::'.strtoupper($level));
+                        }
+                    throw new InvalidArgumentException('Level "'.$level.'" is not defined, use one of: '.implode(', ', array_keys(static::$levels)));
+                    
+                    return $level;
+                }
+                .....
+        
+                public function isHandling(array $record): bool
+                {
+                    return $record['level'] >= $this->level;
+                }
+                </code></pre>
+                </section>
+
+                <section>
+                <h2>Log level</h2>
+                <pre><code data-trim>
+class LogLevel implements LogLevelInterface
+{
+     ....
+    public function __toString()
+    {
+        $name = array_search($this->level, self::$levels);
+        if ($name !== false) {
+
+            return strtoupper($name);
+        }
+
+        return 'undefined';
+    }
+    ....
+    /**
+     * @inheritdocs
+     */
+    public function includes($level): bool
+    {
+         if ($level instanceof LogLevel) {
+ 
+             return $level->getLevel() >= $this->level;
+         }
+
+        return $level >= $this->level;
+    }
+                </code></pre>
+                </section>
+
+                <section data-background-image="img/2.gif" data-background-size="contain">
+                    <h2>Figure 8 knot</h2>
+                </section>
+                
+                <section data-background-image="img/3.gif" data-background-size="contain">
+                    <h2>Bowline</h2>
+                </section>              
+            
+                <section data-background-image="img/4.gif" data-background-size="contain">
+                    <h2>Clove hitch</h2>
+                </section>  
+        
+                <section data-background-image="img/5.gif" data-background-size="contain">
+                    <h2>Square lashing</h2>
+                </section>
+                
+                <section data-background-image="img/6.gif" data-background-size="contain">
+                    <h2>Tripod lashing</h2>
+                </section>
+                
+                <section data-background-image="img/7.gif" data-background-size="contain">
+                </section>
+        
+                <section data-background-image="img/8.gif" data-background-size="contain">
+                    <h2>Truckers hitch</h2>
+                </section>      
+                
+                <section data-background-image="img/9.gif" data-background-size="contain">
+                    <h2>Rope swing</h2>
+                </section>  
+
+                
+                <section>
+                <pre><code data-trim>
+                
+                </code></pre>
+                </section>
+                
+                <section>
+                  <h1>#1</h1>
+                  <h2>Только один уровень отступа в методе</h2>
+                  <ul>
+                    <li>цикломатическая сложность</li>
+                    <li>один уровень абстракции</li>
+                  </ul>
+                </section>
+                
+                <section>
+                  <h1>#2</h1>
+                  <h2>Не используйте else</h2>
+                  <ul>
+                    <li>читаемость</li>
+                    <li>предсказуемость</li>
+                  </ul>
+                </section>
+
+
+
+                <section>
+                  <h1>#5</h1>
+                  <h2>Одна точка на строку<sup>*</sup>&nbsp;<sup>**</sup></h2>
+                  <h4><sup>*</sup> Два -> на строку в PHP</h4>
+                  <h4><sup>**</sup> кроме текучих интерфейсов </h4>
+                  <ul>
+                    <li>тестируемость (mock-объекты)</li>
+                    <li>закон Деметры</li>
+                  </ul>
+                </section>
+
+                <section>
+                  <h1>#5</h1>
+                  <h2>Одна точка на строку<sup>*</sup>&nbsp;<sup>**</sup></h2>
+                  <h4><sup>*</sup> Два -> на строку в PHP</h4>
+                  <h4><sup>**</sup> кроме текучих интерфейсов </h4>
+                  <ul>
+                    <li>тестируемость (mock-объекты)</li>
+                    <li>закон Деметры</li>
+                  </ul>
+                </section>
+
+                <section>
+                  <h1>#6</h1>
+                  <h2>Не используйте сокращения</h2>
+                  <ul>
+                    <li>слишком длинное название метода?</li>
+                    <li>слишком часто приходиться вызывать метод?</li>
+                    <li>читаемость</li>
+                  </ul>
+                </section>
+
+                <section>
+                  <h1>#7</h1>
+                  <h2>Сохраняйте сущности короткими</h2>
+                  <ul>
+                    <li>200 сток в файле (включая docblock)</li>
+                    <li>10 методов в классе</li>
+                    <li>15 классов в пространстве имен</li>
+                  </ul>
+                </section>
+
+                <section>
+                  <h1>#8</h1>
+                  <h2>Никаких классов с более чем 2 атрибутами</h2>
+                  <ul>
+                    <li>это не шутка, а упражнение</li>
+                    <li>высокая связность</li>
+                    <li>инкапсуляция</li>
+                    <li>обслуживают состояние одного атрибута</li>
+                    <li>координируют две отдельные переменные</li>
+                  </ul>
+                </section>
+        
+ 
+                <section>
+                  <h1>#9</h1>
+                  <h2><s>геттеры, сеттеры и свойста</s></h2>
+                  <ul>
+                    <li>указывай, а не спрашивай</li>
+                    <li>принцип открытости/закрытости</li>
+                  </ul>
+                </section>
+                
+                <section>
+                    <h1>Вопросы?</h1>
+                    <p>bit.ly/webcamp16</p>
+                    <p>bit.ly/webcamp16code</p>
+                    <p>denyspotapov.com</p>
+                </section>
+
+            </div>
+        </div>
+
+        <script src="lib/js/head.min.js"></script>
+        <script src="js/reveal.js"></script>
+
+        <script>
+            // More info https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                history: true,
+                
+                width: 800,
+                height: 600,
+                
+                // More info https://github.com/hakimel/reveal.js#dependencies
+                dependencies: [
+                    { src: 'plugin/markdown/marked.js' },
+                    { src: 'plugin/markdown/markdown.js' },
+                    { src: 'plugin/notes/notes.js', async: true },
+                    { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+                ]
+            });
+        </script>
+    </body>
 </html>
