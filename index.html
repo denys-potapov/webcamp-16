@@ -278,6 +278,10 @@ $logger->addInfo('My logger is now ready');
                 <p>-4 теста</p>
                 </section>
 
+                <section data-background-image="img/2.gif" data-background-size="contain">
+                    <h2>Figure 8 knot</h2>
+                </section>
+
                 <section>
                   <h1>#3</h1>
                   <h2>Оберните все примитивные типы</h2>
@@ -290,31 +294,47 @@ $logger->addInfo('My logger is now ready');
 
                 <section>
                 <h2>Log level</h2>
-                <pre><code data-trim>
-                public function addRecord(int $level, string $message, array $context = array()): bool
-                .....
-                public static function toMonologLevel($level): int
-                {
-                    if (is_string($level)) {
-                        if (defined(__CLASS__.'::'.strtoupper($level))) {
-                            return constant(__CLASS__.'::'.strtoupper($level));
-                        }
-                    throw new InvalidArgumentException('Level "'.$level.'" is not defined, use one of: '.implode(', ', array_keys(static::$levels)));
-                    
-                    return $level;
-                }
-                .....
-        
-                public function isHandling(array $record): bool
-                {
-                    return $record['level'] >= $this->level;
-                }
+                <pre><code>
+public function addRecord(int $level, string $message, array $context = array()): bool
+                </code></pre>
+                <pre><code>
+public function isHandling(array $record): bool
+{
+    return $record['level'] >= $this->level;
+}
                 </code></pre>
                 </section>
 
                 <section>
                 <h2>Log level</h2>
+                <pre><code>
+public static function toMonologLevel($level): int
+{
+    if (is_string($level)) {
+        if (defined(__CLASS__.'::'.strtoupper($level))) {
+            return constant(__CLASS__.'::'.strtoupper($level));
+        }
+    throw new InvalidArgumentException('Level "'.$level.'" is not defined, use one of: '.implode(', ', array_keys(static::$levels)));
+    
+    return $level;
+}
+                </code></pre>
                 <pre><code data-trim>
+    /**
+     * This is a static variable and not a constant to serve as an extension point for custom levels
+     *
+     * @var string[] $levels Logging levels with the levels as key
+     */
+    protected static $levels = [
+        self::DEBUG     => 'DEBUG',
+        self::INFO      => 'INFO',
+.....
+                </code></pre>
+                </section>
+
+                <section>
+                <h2>Log level</h2>
+                <pre><code>
 class LogLevel implements LogLevelInterface
 {
      ....
@@ -344,21 +364,150 @@ class LogLevel implements LogLevelInterface
                 </code></pre>
                 </section>
 
-                <section data-background-image="img/2.gif" data-background-size="contain">
-                    <h2>Figure 8 knot</h2>
-                </section>
-                
                 <section data-background-image="img/3.gif" data-background-size="contain">
                     <h2>Bowline</h2>
-                </section>              
+                </section>   
+
+                <section>
+                  <h1>#2</h1>
+                  <h2>Не используйте else</h2>
+                  <ul>
+                    <li>читаемость</li>
+                    <li>предсказуемость</li>
+                    <li>early return</li>
+                    <li>защитное программирование</li>
+                  </ul>
+                </section>
             
+             <section>
+            <h4>WebProcessor</h4>
+            <pre><code>
+    public function __construct($serverData = null)
+    {
+        if (null === $serverData) {
+            $this->serverData =& $_SERVER;
+        } elseif (is_array($serverData)) {
+            $this->serverData = $serverData;
+        } else {
+            throw new \UnexpectedValueException('$serverData ....');
+        }
+    }
+            </code></pre>
+        </section>
+        <section>
+            <h4>WebProcessor</h4>
+            <pre><code>
+    public function __construct($serverData = null)
+    {
+        if (null === $serverData) {
+            $serverData =& $_SERVER;
+        }
+        if (!is_array($serverData)) {
+            throw new \UnexpectedValueException('$serverData ....');
+        }
+        $this->serverData =& $serverData;
+    }
+            </code></pre>
+        </section>
+
                 <section data-background-image="img/4.gif" data-background-size="contain">
                     <h2>Clove hitch</h2>
                 </section>  
-        
+                
+                <section>
+                  <h1>#1</h1>
+                  <h2>Только один уровень отступа в методе</h2>
+                  <ul>
+                    <li><small>без примера</small></li>
+                    <li>цикломатическая сложность</li>
+                    <li>один уровень абстракции</li>
+                  </ul>
+                </section>
+
                 <section data-background-image="img/5.gif" data-background-size="contain">
                     <h2>Square lashing</h2>
                 </section>
+
+                <section>
+                  <h1>#8</h1>
+                  <h2>Никаких классов с более чем 2 атрибутами</h2>
+                  <ul>
+                    <li>это не шутка, а упражнение</li>
+                    <li>высокая связность</li>
+                    <li>инкапсуляция</li>
+                  </ul>
+                </section>
+                <section>
+                    <img src="img/rule8.png">
+                </section>
+                <section>
+                    <h2>Почему два?</h2>
+                    <ul>
+                      <li>обслуживают состояние одного атрибута</li>
+                      <li>координируют две отдельные переменные</li>
+                    </ul>
+                </section>
+        
+                <section>
+                <h2>Logger</h2>
+                <pre><code>
+     /**
+      * @var bool
+      */
+    protected $microsecondTimestamps = false;
+
+     /**
+      * @var DateTimeZone
+      */
+    protected $timezone;
+                </code></pre>
+                <pre><code>
+    if ($this->microsecondTimestamps) {
+        $ts = \DateTime::createFromFormat('U.u', sprintf('%.6F', microtime(true)), $this->timezone);
+    } else {
+        $ts = new \DateTime('', $this->timezone);
+    }
+
+    $ts->setTimezone($this->timezone);
+                </code></pre>
+                </section>
+           
+                <section>
+                <h2>DateTimeProcessor</h2>
+                <pre><code>    
+class DateTimeProcessor
+{
+    /**
+     * @var bool
+     */
+    protected $microsecondTimestamps = false;
+
+    /**
+     * @var DateTimeZone
+     */
+    protected $timezone;
+
+    public function __construct(DateTimeZone $timezone = null)
+    ...
+                </code></pre>
+                </section>
+        
+                <section>
+                <h2>Logger</h2>
+                <pre><code>
+    protected $dateTimeProcessor; 
+
+     public function __construct(string $name, array $handlers = array(), array $processors = array(), DateTimeZone $timezone = null)
+     {
+         parent::__construct($name, $handlers, $processors);
+
+
+        // BC compatible date time
+        $this->dateTimeProcessor = new DateTimeProcessor($timezone);
+        $this->pushProcessor($this->dateTimeProcessor);
+     }
+                </code></pre>
+                </section>               
                 
                 <section data-background-image="img/6.gif" data-background-size="contain">
                     <h2>Tripod lashing</h2>
@@ -382,23 +531,9 @@ class LogLevel implements LogLevelInterface
                 </code></pre>
                 </section>
                 
-                <section>
-                  <h1>#1</h1>
-                  <h2>Только один уровень отступа в методе</h2>
-                  <ul>
-                    <li>цикломатическая сложность</li>
-                    <li>один уровень абстракции</li>
-                  </ul>
-                </section>
+
                 
-                <section>
-                  <h1>#2</h1>
-                  <h2>Не используйте else</h2>
-                  <ul>
-                    <li>читаемость</li>
-                    <li>предсказуемость</li>
-                  </ul>
-                </section>
+
 
 
 
@@ -413,16 +548,6 @@ class LogLevel implements LogLevelInterface
                   </ul>
                 </section>
 
-                <section>
-                  <h1>#5</h1>
-                  <h2>Одна точка на строку<sup>*</sup>&nbsp;<sup>**</sup></h2>
-                  <h4><sup>*</sup> Два -> на строку в PHP</h4>
-                  <h4><sup>**</sup> кроме текучих интерфейсов </h4>
-                  <ul>
-                    <li>тестируемость (mock-объекты)</li>
-                    <li>закон Деметры</li>
-                  </ul>
-                </section>
 
                 <section>
                   <h1>#6</h1>
@@ -444,18 +569,7 @@ class LogLevel implements LogLevelInterface
                   </ul>
                 </section>
 
-                <section>
-                  <h1>#8</h1>
-                  <h2>Никаких классов с более чем 2 атрибутами</h2>
-                  <ul>
-                    <li>это не шутка, а упражнение</li>
-                    <li>высокая связность</li>
-                    <li>инкапсуляция</li>
-                    <li>обслуживают состояние одного атрибута</li>
-                    <li>координируют две отдельные переменные</li>
-                  </ul>
-                </section>
-        
+
  
                 <section>
                   <h1>#9</h1>
