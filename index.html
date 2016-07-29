@@ -45,7 +45,7 @@
 
                 <section>
                 <h2>Monolog</h2>
-                <pre><code data-trim>
+                <pre><code>
                 // Create the logger
 $logger = new Logger('my_logger');
 
@@ -509,33 +509,128 @@ class DateTimeProcessor
                 </code></pre>
                 </section>               
                 
+                <section>
+                <h2>FilterHandler</h2>
+                <pre><code>
+-class FilterHandler extends Handler implements ProcessableHandlerInterface
+{
+
+    use ProcessableHandlerTrait; 
+
+    /**
+     * Whether the messages that are handled can bubble up the stack or not
+     *
+     * @var Boolean
+     */
+    protected $bubble;
+                </code></pre>
+                <pre><code>
+    public function handle(array $record): bool
+    {
+        ...
+
+        if ($this->processors) {
+            $record = $this->processRecord($record);
+        }
+
+        ...
+
+        return false === $this->bubble;
+    }
+                </code></pre>
+                </section>  
+                
+                <section>
+                <h2>GeneralHandler</h2>
+                <pre><code>
+abstract class GeneralHandler extends Handler
+{
+    /*
+     * 
+     * @var ProcessorStack
+     */
+    protected $processors;
+
+    protected $bubble = true;
+                </code></pre>
+                <pre><code>
+    public function handle(array $record): bool
+    {
+        if (!$this->isHandling($record)) {
+            return false;
+        }
+        $record = $this->processors->process($record);
+        $this->postProcess($record);
+        return false === $this->bubble;
+    }
+                </code></pre>
+                </section>
+               
+                <section>
+                <h2>FilterHandler</h2>
+                <pre><code>
+                class FilterHandler extends GeneralHandler
+                </code></pre>
+                 <pre><code>
+                class GroupHandler extends GeneralHandler
+                </code></pre>
+                <pre><code>
+                class AbstractProcessingHandler extends GeneralHandler
+                </code></pre>
+                <pre><code>
+                class SamplingHandler extends GeneralHandler
+                </code></pre>
+                </section>
+                
+                <section>
+                <h2>Хорошее правило</h2>
+                <p>и результаты интересные</p>
+                <ul>
+                    <li>bubble - один раз</li>
+                    <li>-20 LOC</li>
+                    <li>-ProcessableHandlerTrait</li>
+                </ul>
+                </section>
+
                 <section data-background-image="img/6.gif" data-background-size="contain">
                     <h2>Tripod lashing</h2>
                 </section>
                 
-                <section data-background-image="img/7.gif" data-background-size="contain">
+                <section>
+                  <h1>#7</h1>
+                  <h2>Сохраняйте сущности короткими</h2>
+                  <ul>
+                    <li>200 сток в файле (включая docblock)</li>
+                    <li>10 методов в классе</li>
+                    <li>15 классов в пространстве имен</li>
+                  </ul>
                 </section>
-        
+
+                <section>
+                  <h2>Logger и NewLogger</h2>
+                  <ul>
+                    <li>До Logger - 442 строк кода</li>
+                    <li>После Logger - 275 строк кода</li>
+                    <li>После NewLogger - 106 строк кода</li>
+                  </ul>
+                </section>
+
                 <section data-background-image="img/8.gif" data-background-size="contain">
                     <h2>Truckers hitch</h2>
                 </section>      
                 
+                <section>
+                  <h1>#9</h1>
+                  <h2><s>геттеры, сеттеры и свойста</s></h2>
+                  <ul>
+                    <li>указывай, а не спрашивай</li>
+                    <li>принцип открытости/закрытости</li>
+                  </ul>
+                </section>
+
                 <section data-background-image="img/9.gif" data-background-size="contain">
                     <h2>Rope swing</h2>
                 </section>  
-
-                
-                <section>
-                <pre><code data-trim>
-                
-                </code></pre>
-                </section>
-                
-
-                
-
-
-
 
                 <section>
                   <h1>#5</h1>
@@ -548,7 +643,6 @@ class DateTimeProcessor
                   </ul>
                 </section>
 
-
                 <section>
                   <h1>#6</h1>
                   <h2>Не используйте сокращения</h2>
@@ -559,25 +653,7 @@ class DateTimeProcessor
                   </ul>
                 </section>
 
-                <section>
-                  <h1>#7</h1>
-                  <h2>Сохраняйте сущности короткими</h2>
-                  <ul>
-                    <li>200 сток в файле (включая docblock)</li>
-                    <li>10 методов в классе</li>
-                    <li>15 классов в пространстве имен</li>
-                  </ul>
-                </section>
-
-
- 
-                <section>
-                  <h1>#9</h1>
-                  <h2><s>геттеры, сеттеры и свойста</s></h2>
-                  <ul>
-                    <li>указывай, а не спрашивай</li>
-                    <li>принцип открытости/закрытости</li>
-                  </ul>
+                <section data-background-image="img/7.gif" data-background-size="contain">
                 </section>
                 
                 <section>
